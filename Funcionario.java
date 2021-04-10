@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,6 +28,10 @@ public class Funcionario {
 	
 	@Column(name="nm_funcionario", nullable = false, length = 60)
 	private String nome;
+	
+	@Lob
+	@Column(name="ft_foto", nullable = false)
+	private byte[] foto;
 	
 	@Column(name="nr_cpf", nullable = false, length = 10)
 	private String cpf;
@@ -49,9 +54,10 @@ public class Funcionario {
 	public Funcionario() {
 	}
 
-	public Funcionario(String nome, String cpf, String cargo, String departamento, int salario,
+	public Funcionario(String nome, byte[] foto, String cpf, String cargo, String departamento, int salario,
 			Calendar dtContratacao) {
 		this.nome = nome;
+		this.foto = foto;
 		this.cpf = cpf;
 		this.cargo = cargo;
 		this.departamento = departamento;
@@ -59,16 +65,20 @@ public class Funcionario {
 		this.dtContratacao = dtContratacao;
 	}
 
-	public Funcionario(int codigo, String nome, String cpf, String cargo, String departamento, int salario,
+
+	public Funcionario(int codigo, String nome, byte[] foto, String cpf, String cargo, String departamento, int salario,
 			Calendar dtContratacao) {
 		this.codigo = codigo;
 		this.nome = nome;
+		this.foto = foto;
 		this.cpf = cpf;
 		this.cargo = cargo;
 		this.departamento = departamento;
 		this.salario = salario;
 		this.dtContratacao = dtContratacao;
 	}
+
+
 
 	public int getCodigo() {
 		return codigo;
@@ -124,6 +134,14 @@ public class Funcionario {
 
 	public void setDtContratacao(Calendar dtContratacao) {
 		this.dtContratacao = dtContratacao;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
 	}
 	
 	
